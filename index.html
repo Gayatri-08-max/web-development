@@ -16,6 +16,7 @@
     </nav>
 
     <h1>My Student Portfolio</h1>
+    <button id="changeTitle">show welcome Message</button>
 
     <p class="intro">
         Hello, I am a passionate student exploring the world of technology.
@@ -36,8 +37,9 @@
 
 
         <h2 id="skills">My Skills</h2>
+        <button id="showSkills">Show My Skills</button>
 
-        <ul>
+        <ul id="skillsList">
             <li>Python</li>
             <li>C Programming</li>
             <li>Problem Solving</li>
@@ -46,20 +48,16 @@
 
         <h2 id="projects">My Projects</h2>
 
-        <ul>
-            <li>Student Portfolio Website</li>
-            <li>Python Problem Solving</li>
-        </ul>
         <div class="project">
             <h3>Student Portfolio Website</h3>
-            <p>A responsive portfolio website built using HTML, CSS and JavaScript.</p>
+            <p>A responsive portfolio website built using HTML, CSS and JavaScript.It showcases my skills,goals,projects ,and contact information.</p>
             <a href="https://github.com/Gayatri-08-max/web-development" target="_blank">View on GitHub</a>
         </div>
 
 
         <h2 id="goals">My Goals</h2>
-
-        <p>
+        <button id="toggleGoals">Show Goals</button>
+        <p id="goalsText">
             I want to improve my programming skills, build useful projects,
             and become a skilled software developer.
         </p>
@@ -69,10 +67,13 @@
 
         <form id="contactForm" novalidate>
 
+            <label for="name">Name</label>
             <input type="text" id="name" placeholder="Your Name">
 
+            <label for="email">Email</label>
             <input type="email" id="email" placeholder="Your Email">
 
+            <label for="messageInput">Message</label>
             <textarea id="messageInput" placeholder="Your Message"></textarea>
 
             <button type="submit">Send Message</button>

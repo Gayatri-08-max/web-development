@@ -54,7 +54,7 @@ p {
 li {
     font-size: 17px;
     margin-bottom: 10px;
-    font-size: Arial;
+    font-family: Arial;
     color: #333333;
 }
 
@@ -147,7 +147,8 @@ ul {
 }
 nav {
     background-color: white;
-    padding: 15px;
+    padding: 12px 15px;
+    row-gap: 8px;
     text-align: center;
     margin-bottom: 25px;
     border-radius: 10px;
@@ -155,6 +156,10 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 8px;
 
 }
 
@@ -162,6 +167,7 @@ nav a {
     display: inline-block;
     margin: 0 10px;
     font-weight: bold;
+    padding: 5px;
 }
 h2 {
     scroll-margin-top: 80px;
@@ -182,6 +188,7 @@ h2 {
 
 .project p {
     margin-bottom: 0;
+    line-height: 1.6;
 }
 .project a {
     display: inline-block;
@@ -191,6 +198,7 @@ h2 {
     margin-top: 15px;
     border-radius: 6px;
     text-decoration: none;
+    font-weight: bold;
     transition: background-color 0.2s;
 }
 .project a:hover {
@@ -271,12 +279,20 @@ h2 {
     .project a {
         width: fit-content;
     }
+    nav {
+    padding: 10px;
+    }
+
+    nav a {
+        margin: 0 5px;
+        padding: 5px;
+        font-size: 14px;
+    }
+    h2 {
+    scroll-margin-top: 60px;
+    }
 }
-#message {
-    color: #6a1b9a;
-    font-weight: bold;
-    margin-top: 15px;
-}
+
 #formMessage {
     margin-top: 15px;
     font-weight: bold;
@@ -290,4 +306,24 @@ form textarea {
     border-radius: 6px;
     font-size: 16px;
     box-sizing: border-box;
+}
+form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+form input:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #6a1b9a;
+}
+
+button:active {
+    transform: translateY(1px);
 }
