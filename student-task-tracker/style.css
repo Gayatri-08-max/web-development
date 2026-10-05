@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6fb;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2d3a8c;
+}
+
+form {
+    background-color: white;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: #2d3a8c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+}
+
+h2 {
+    text-align: center;
+    color: #2d3a8c;
+}
+
+#taskList {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: #1f2a6b;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+
+input:focus {
+    outline: none;
+    border-color: #2d3a8c;
+    box-shadow: 0 0 0 3px rgba(45, 58, 140, 0.2);
+}
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 15px;
+    }
+}
