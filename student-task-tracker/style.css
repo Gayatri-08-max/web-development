@@ -85,3 +85,11 @@ input:focus {
         padding: 15px;
     }
 }
+
+.task-card {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
