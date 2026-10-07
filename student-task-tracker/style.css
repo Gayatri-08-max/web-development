@@ -93,3 +93,55 @@ input:focus {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+.task-card h3 {
+    margin: 0 0 8px 0;
+    color: #2d3a8c;
+}
+
+.task-card p {
+    margin: 4px 0;
+    color: #555;
+}
+
+.complete-btn {
+    width: auto;
+    margin-top: 10px;
+    margin-right: 8px;
+    padding: 8px 16px;
+    background-color: #2e8b57;
+}
+
+.complete-btn:hover {
+    background-color: #25704a;
+}
+
+.delete-btn {
+    width: auto;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #c0392b;
+}
+
+.delete-btn:hover {
+    background-color: #992d22;
+}
+
+.start-btn {
+    width: auto;
+    margin-top: 10px;
+    margin-right: 8px;
+    padding: 8px 16px;
+    background-color: #2d3a8c;
+}
+
+#score {
+    max-width: 400px;
+    margin: 0 auto 10px auto;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    color: #2d3a8c;
+    background-color: #eef2ff;
+    border-radius: 10px;
+}
