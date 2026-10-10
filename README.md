@@ -13,7 +13,7 @@ Features:
 - Responsive layout for desktop and mobile screens
 - Navigation between different sections
 - Interactive buttons using JavaScript
-- Show/hide functionality for skills and goals
+- Show/hide git branch for skills and goals
 - Contact form with basic validation
 - GitHub project link
 

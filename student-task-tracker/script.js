@@ -78,6 +78,29 @@ function updateScore() {
     scoreDisplay.textContent = "🏆 Productivity Score: " + totalPoints + " points";
 }
 
+function saveData() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("totalPoints", String(totalPoints));
+}
+
+function loadData() {
+    const savedTasks = localStorage.getItem("tasks");
+    const savedPoints = localStorage.getItem("totalPoints");
+
+    if (savedTasks !== null) {
+        const loadedTasks = JSON.parse(savedTasks);
+
+        loadedTasks.forEach(function (task) {
+            task.timerId = null;
+            tasks.push(task);
+        });
+    }
+
+    if (savedPoints !== null) {
+        totalPoints = Number(savedPoints);
+    }
+}
+
 function renderTasks() {
     taskList.innerHTML = "";
 
@@ -240,6 +263,7 @@ function renderTasks() {
     });
 
     updateScore();
+    saveData();
 }
 
 taskForm.addEventListener("submit", function (event) {
@@ -269,3 +293,6 @@ taskForm.addEventListener("submit", function (event) {
 
     renderTasks();
 });
+
+loadData();
+renderTasks();

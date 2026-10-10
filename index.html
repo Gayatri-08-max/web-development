@@ -1,94 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <title>My Student Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-
+  <body>
     <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#goals">Goals</a>
-        <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#goals">Goals</a>
+      <a href="#contact">Contact</a>
     </nav>
 
     <h1>My Student Portfolio</h1>
     <button id="changeTitle">show welcome Message</button>
 
     <p class="intro">
-        Hello, I am a passionate student exploring the world of technology.
+      Hello, I am a passionate student exploring the world of technology.
     </p>
 
-    <img src="https://via.placeholder.com/200"
-         alt="My profile image"
-         width="150">
+    <img
+      src="https://via.placeholder.com/200"
+      alt="My profile image"
+      width="150"
+    />
 
     <div class="section">
+      <h2 id="about">About Me</h2>
 
-        <h2 id="about">About Me</h2>
+      <p>
+        I am a CSE student interested in programming and web development. I
+        enjoy learning new technologies and improving my problem-solving skills.
+      </p>
 
+      <h2 id="skills">My Skills</h2>
+      <button id="showSkills">Show My Skills</button>
+
+      <ul id="skillsList">
+        <li>Python</li>
+        <li>C Programming</li>
+        <li>Problem Solving</li>
+      </ul>
+
+      <h2 id="projects">My Projects</h2>
+
+      <div class="project">
+        <h3>Student Portfolio Website</h3>
         <p>
-            I am a CSE student interested in programming and web development.
-            I enjoy learning new technologies and improving my problem-solving skills.
+          A responsive portfolio website built using HTML, CSS and JavaScript.It
+          showcases my skills,goals,projects ,and contact information.
         </p>
+        <a
+          href="https://github.com/Gayatri-08-max/web-development"
+          target="_blank"
+          >View on GitHub</a
+        >
+      </div>
 
+      <h2 id="goals">My Goals</h2>
+      <button id="toggleGoals">Show Goals</button>
+      <p id="goalsText">
+        I want to improve my programming skills, build useful projects, and
+        become a skilled software developer.
+      </p>
 
-        <h2 id="skills">My Skills</h2>
-        <button id="showSkills">Show My Skills</button>
+      <h2 id="contact">Contact Me</h2>
 
-        <ul id="skillsList">
-            <li>Python</li>
-            <li>C Programming</li>
-            <li>Problem Solving</li>
-        </ul>
+      <form id="contactForm" novalidate>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your Name" />
 
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your Email" />
 
-        <h2 id="projects">My Projects</h2>
+        <label for="messageInput">Message</label>
+        <textarea id="messageInput" placeholder="Your Message"></textarea>
 
-        <div class="project">
-            <h3>Student Portfolio Website</h3>
-            <p>A responsive portfolio website built using HTML, CSS and JavaScript.It showcases my skills,goals,projects ,and contact information.</p>
-            <a href="https://github.com/Gayatri-08-max/web-development" target="_blank">View on GitHub</a>
-        </div>
+        <button type="submit">Send Message</button>
+      </form>
 
+      <p id="formMessage"></p>
 
-        <h2 id="goals">My Goals</h2>
-        <button id="toggleGoals">Show Goals</button>
-        <p id="goalsText">
-            I want to improve my programming skills, build useful projects,
-            and become a skilled software developer.
-        </p>
+      <br />
 
-
-        <h2 id="contact">Contact Me</h2>
-
-        <form id="contactForm" novalidate>
-
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Your Name">
-
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Your Email">
-
-            <label for="messageInput">Message</label>
-            <textarea id="messageInput" placeholder="Your Message"></textarea>
-
-            <button type="submit">Send Message</button>
-
-        </form>
-
-        <p id="formMessage"></p>
-
-        <br>
-
-        <a href="https://github.com/Gayatri-08-max/web-development/" target="_blank">My GitHub</a>
-
+      <a
+        href="https://github.com/Gayatri-08-max/web-development/"
+        target="_blank"
+        >My GitHub</a
+      >
     </div>
 
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
