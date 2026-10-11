@@ -35,7 +35,6 @@ input {
     font-size: 16px;
     box-sizing: border-box;
     transition: all 0.2s ease;
-
 }
 
 button {
@@ -49,7 +48,6 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s ease;
-
 }
 
 h2 {
@@ -70,20 +68,10 @@ button:active {
     transform: scale(0.97);
 }
 
-
 input:focus {
     outline: none;
     border-color: #2d3a8c;
     box-shadow: 0 0 0 3px rgba(45, 58, 140, 0.2);
-}
-@media (max-width: 500px) {
-    body {
-        padding: 10px;
-    }
-
-    form {
-        padding: 15px;
-    }
 }
 
 .task-card {
@@ -135,6 +123,24 @@ input:focus {
     background-color: #2d3a8c;
 }
 
+.pause-btn {
+    width: auto;
+    margin-top: 10px;
+    margin-right: 8px;
+    padding: 8px 16px;
+    background-color: #e67e22;
+}
+
+.pause-btn:hover {
+    background-color: #bf6516;
+}
+
+.task-card .result {
+    background-color: #eef2ff;
+    padding: 8px;
+    border-radius: 6px;
+}
+
 #score {
     max-width: 400px;
     margin: 0 auto 10px auto;
@@ -144,4 +150,74 @@ input:focus {
     color: #2d3a8c;
     background-color: #eef2ff;
     border-radius: 10px;
+}
+
+#summary {
+    max-width: 400px;
+    margin: 0 auto 10px auto;
+    padding: 10px;
+    text-align: center;
+    color: #555;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.time-up {
+    background-color: #fff4e5;
+    color: #b45309;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.warning {
+    background-color: #fffbe6;
+    color: #92400e;
+    padding: 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.warning:empty {
+    display: none;
+}
+
+.warning.urgent {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 15px;
+    }
+}
+
+#filters {
+    max-width: 400px;
+    margin: 0 auto 10px auto;
+    display: flex;
+    gap: 8px;
+}
+
+.filter-btn {
+    margin-top: 0;
+    padding: 8px;
+    background-color: white;
+    color: #2d3a8c;
+    border: 1px solid #2d3a8c;
+}
+
+.filter-btn:hover {
+    background-color: #eef2ff;
+}
+
+.filter-btn.active {
+    background-color: #2d3a8c;
+    color: white;
 }

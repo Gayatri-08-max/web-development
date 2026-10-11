@@ -3,6 +3,9 @@ const timeInput = document.querySelector("#time");
 const taskForm = document.querySelector("form");
 const taskList = document.querySelector("#taskList");
 const scoreDisplay = document.querySelector("#score");
+const summaryDisplay = document.querySelector("#summary");
+const filterButtons = document.querySelectorAll(".filter-btn");
+let currentFilter = "all";
 
 const tasks = [];
 let totalPoints = 0;
@@ -78,6 +81,26 @@ function updateScore() {
     scoreDisplay.textContent = "🏆 Productivity Score: " + totalPoints + " points";
 }
 
+function updateSummary() {
+    const completedCount = tasks.filter(function (task) {
+        return task.completed;
+    }).length;
+
+    const pendingCount = tasks.length - completedCount;
+
+    let plannedMinutes = 0;
+    tasks.forEach(function (task) {
+        if (!task.completed) {
+            plannedMinutes = plannedMinutes + task.estimatedTime;
+        }
+    });
+
+    summaryDisplay.textContent =
+        "✅ Completed: " + completedCount +
+        " | ⏳ Pending: " + pendingCount +
+        " | 🕒 Planned: " + plannedMinutes + " min";
+}
+
 function saveData() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     localStorage.setItem("totalPoints", String(totalPoints));
@@ -105,6 +128,13 @@ function renderTasks() {
     taskList.innerHTML = "";
 
     tasks.forEach(function (task, index) {
+        if (currentFilter === "pending" && task.completed) {
+            return;
+        }
+        if (currentFilter === "completed" && !task.completed) {
+            return;
+        }
+
         const taskCard = document.createElement("div");
         taskCard.classList.add("task-card");
 
@@ -263,6 +293,7 @@ function renderTasks() {
     });
 
     updateScore();
+    updateSummary();
     saveData();
 }
 
@@ -296,3 +327,16 @@ taskForm.addEventListener("submit", function (event) {
 
 loadData();
 renderTasks();
+
+filterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        currentFilter = button.dataset.filter;
+
+        filterButtons.forEach(function (b) {
+            b.classList.remove("active");
+        });
+        button.classList.add("active");
+
+        renderTasks();
+    });
+});
