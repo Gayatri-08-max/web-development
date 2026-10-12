@@ -172,6 +172,27 @@ function renderTasks() {
             taskResult.textContent = task.remark;
             taskResult.classList.add("result");
             taskCard.appendChild(taskResult);
+
+            const noteBox = document.createElement("textarea");
+            noteBox.placeholder = "What did you do? Write a note...";
+            noteBox.value = task.note || "";
+            noteBox.classList.add("note-box");
+            taskCard.appendChild(noteBox);
+
+            const saveNoteButton = document.createElement("button");
+            saveNoteButton.textContent = "💾 Save Note";
+            saveNoteButton.classList.add("save-note-btn");
+
+            saveNoteButton.addEventListener("click", function () {
+                task.note = noteBox.value;
+                saveData();
+                saveNoteButton.textContent = "✅ Saved!";
+                setTimeout(function () {
+                    saveNoteButton.textContent = "💾 Save Note";
+                }, 1500);
+            });
+
+            taskCard.appendChild(saveNoteButton);
         }
 
         if (!task.completed) {
@@ -309,6 +330,7 @@ taskForm.addEventListener("submit", function (event) {
         timerId: null,
         points: 0,
         remark: "",
+        note: "",
         timeUpShown: false,
         warn30Played: false,
         warn20Played: false,
