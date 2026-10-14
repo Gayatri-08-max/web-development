@@ -15,6 +15,8 @@
 
     <p id="summary"></p>
 
+    <button id="sound-toggle">🔔 Sound: On</button>
+
     <form>
         <label for="task">Task</label>
         <input type="text" id="task" placeholder="Enter a task">
@@ -26,15 +28,12 @@
     </form>
 
     <h2>My Tasks</h2>
-        
 
     <div id="filters">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="pending">Pending</button>
         <button class="filter-btn" data-filter="completed">Completed</button>
     </div>
-
-    
 
     <div id="taskList"></div>
     <script src="script.js"></script>

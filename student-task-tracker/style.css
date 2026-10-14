@@ -233,6 +233,20 @@ input:focus {
     background-color: #2d3a8c;
 }
 
+#sound-toggle {
+    display: block;
+    width: auto;
+    margin: 0 auto 10px auto;
+    padding: 8px 16px;
+    background-color: white;
+    color: #2d3a8c;
+    border: 1px solid #2d3a8c;
+}
+
+#sound-toggle:hover {
+    background-color: #eef2ff;
+}
+
 @media (max-width: 500px) {
     body {
         padding: 10px;

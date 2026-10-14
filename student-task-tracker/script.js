@@ -13,6 +13,8 @@ let totalPoints = 0;
 const taskEmojis = ["📚", "💻", "📝", "🧠", "🎯", "🔬", "🎨", "🚀"];
 
 let audioContext = null;
+const soundToggle = document.querySelector("#sound-toggle");
+let soundOn = true;
 
 function getTimerText(task) {
     const minutes = String(Math.floor(task.secondsSpent / 60)).padStart(2, "0");
@@ -32,6 +34,10 @@ function stopTimer(task) {
 }
 
 function playBeep(pitch, length, delay) {
+    if (!soundOn) {
+        return;
+    }
+
     if (audioContext === null) {
         return;
     }
@@ -106,6 +112,14 @@ function saveData() {
     localStorage.setItem("totalPoints", String(totalPoints));
 }
 
+function updateSoundButton() {
+    if (soundOn) {
+        soundToggle.textContent = "🔔 Sound: On";
+    } else {
+        soundToggle.textContent = "🔕 Sound: Off";
+    }
+}
+
 function loadData() {
     const savedTasks = localStorage.getItem("tasks");
     const savedPoints = localStorage.getItem("totalPoints");
@@ -121,6 +135,11 @@ function loadData() {
 
     if (savedPoints !== null) {
         totalPoints = Number(savedPoints);
+    }
+
+    const savedSound = localStorage.getItem("soundOn");
+    if (savedSound !== null) {
+        soundOn = savedSound === "true";
     }
 }
 
@@ -362,3 +381,11 @@ filterButtons.forEach(function (button) {
         renderTasks();
     });
 });
+
+soundToggle.addEventListener("click", function () {
+    soundOn = !soundOn;
+    localStorage.setItem("soundOn", String(soundOn));
+    updateSoundButton();
+});
+
+updateSoundButton();
