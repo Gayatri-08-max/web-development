@@ -14,6 +14,7 @@ const taskEmojis = ["📚", "💻", "📝", "🧠", "🎯", "🔬", "🎨", "�
 
 let audioContext = null;
 const soundToggle = document.querySelector("#sound-toggle");
+const formError = document.querySelector("#form-error");
 let soundOn = true;
 
 function getTimerText(task) {
@@ -179,6 +180,9 @@ function renderTasks() {
         taskCard.appendChild(taskTimer);
         taskCard.appendChild(taskStatus);
 
+        const buttonRow = document.createElement("div");
+        buttonRow.classList.add("button-row");
+
         if (task.timeUpShown && !task.completed) {
             const timeUpMessage = document.createElement("p");
             timeUpMessage.textContent = "⏰ Time's up! Your planned time is over.";
@@ -278,7 +282,7 @@ function renderTasks() {
                 renderTasks();
             });
 
-            taskCard.appendChild(startButton);
+            buttonRow.appendChild(startButton);
 
             const pauseButton = document.createElement("button");
             pauseButton.textContent = "⏸️ Pause";
@@ -289,7 +293,7 @@ function renderTasks() {
                 renderTasks();
             });
 
-            taskCard.appendChild(pauseButton);
+            buttonRow.appendChild(pauseButton);
 
             const completeButton = document.createElement("button");
             completeButton.textContent = "✅ Completed";
@@ -314,7 +318,7 @@ function renderTasks() {
                 renderTasks();
             });
 
-            taskCard.appendChild(completeButton);
+            buttonRow.appendChild(completeButton);
         }
 
         const deleteButton = document.createElement("button");
@@ -327,7 +331,8 @@ function renderTasks() {
             renderTasks();
         });
 
-        taskCard.appendChild(deleteButton);
+        buttonRow.appendChild(deleteButton);
+        taskCard.appendChild(buttonRow);
 
         taskList.appendChild(taskCard);
     });
@@ -340,10 +345,27 @@ function renderTasks() {
 taskForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    const nameText = taskInput.value.trim();
+    const minutes = Number(timeInput.value);
+
+    if (nameText === "") {
+        formError.textContent = "Please enter a task name.";
+        taskInput.focus();
+        return;
+    }
+
+    if (!Number.isInteger(minutes) || minutes < 1) {
+        formError.textContent = "Please enter the estimated time as a whole number of minutes (1 or more).";
+        timeInput.focus();
+        return;
+    }
+
+    formError.textContent = "";
+
     const task = {
         id: Date.now(),
-        name: taskInput.value,
-        estimatedTime: Number(timeInput.value),
+        name: nameText,
+        estimatedTime: minutes,
         completed: false,
         secondsSpent: 0,
         timerId: null,

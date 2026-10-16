@@ -80,11 +80,13 @@ input:focus {
     margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-wrap: anywhere;
 }
 
 .task-card h3 {
     margin: 0 0 8px 0;
     color: #2d3a8c;
+    overflow-wrap: anywhere;
 }
 
 .task-card p {
@@ -245,6 +247,27 @@ input:focus {
 
 #sound-toggle:hover {
     background-color: #eef2ff;
+}
+
+#form-error {
+    color: #b91c1c;
+    font-size: 14px;
+    margin: 10px 0 0 0;
+}
+
+#form-error:empty {
+    display: none;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.button-row button {
+    margin: 0;
 }
 
 @media (max-width: 500px) {
