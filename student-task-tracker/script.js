@@ -27,10 +27,20 @@ function getTimerText(task) {
     return text;
 }
 
+function updateSeconds(task) {
+    if (task.startedAt) {
+        task.secondsSpent = task.baseSeconds + Math.floor((Date.now() - task.startedAt) / 1000);
+    }
+}
+
 function stopTimer(task) {
     if (task.timerId !== null) {
         clearInterval(task.timerId);
         task.timerId = null;
+    }
+    if (task.startedAt) {
+        updateSeconds(task);
+        task.startedAt = null;
     }
 }
 
@@ -82,6 +92,61 @@ function applyWarning(task, element) {
     } else {
         element.classList.remove("urgent");
     }
+}
+
+function tickTask(task) {
+    updateSeconds(task);
+
+    const timerElement = document.querySelector("#timer-" + task.id);
+    if (timerElement) {
+        timerElement.textContent = getTimerText(task);
+    }
+
+    const warningElement = document.querySelector("#warning-" + task.id);
+    if (warningElement) {
+        applyWarning(task, warningElement);
+    }
+
+    const remaining = task.estimatedTime * 60 - task.secondsSpent;
+
+    if (remaining <= 30 && remaining > 20 && !task.warn30Played) {
+        task.warn30Played = true;
+        playBeep(660, 0.4, 0);
+    }
+
+    if (remaining <= 20 && remaining > 10 && !task.warn20Played) {
+        task.warn20Played = true;
+        playBeep(770, 0.4, 0);
+        playBeep(770, 0.4, 0.6);
+    }
+
+    if (remaining <= 10 && remaining > 0 && !task.warn10Played) {
+        task.warn10Played = true;
+        playBeep(880, 0.4, 0);
+        playBeep(880, 0.4, 0.6);
+        playBeep(880, 0.4, 1.2);
+    }
+
+    if (!task.timeUpShown && remaining <= 0) {
+        task.timeUpShown = true;
+        playBeep(1000, 1.5, 0);
+        renderTasks();
+    }
+}
+
+function startTimer(task) {
+    if (task.timerId !== null) {
+        return;
+    }
+
+    if (!task.startedAt) {
+        task.startedAt = Date.now();
+        task.baseSeconds = task.secondsSpent;
+    }
+
+    task.timerId = setInterval(function () {
+        tickTask(task);
+    }, 1000);
 }
 
 function updateScore() {
@@ -239,46 +304,7 @@ function renderTasks() {
                 }
                 audioContext.resume();
 
-                task.timerId = setInterval(function () {
-                    task.secondsSpent = task.secondsSpent + 1;
-
-                    const timerElement = document.querySelector("#timer-" + task.id);
-                    if (timerElement) {
-                        timerElement.textContent = getTimerText(task);
-                    }
-
-                    const warningElement = document.querySelector("#warning-" + task.id);
-                    if (warningElement) {
-                        applyWarning(task, warningElement);
-                    }
-
-                    const remaining = task.estimatedTime * 60 - task.secondsSpent;
-
-                    if (remaining === 30 && !task.warn30Played) {
-                        task.warn30Played = true;
-                        playBeep(660, 0.4, 0);
-                    }
-
-                    if (remaining === 20 && !task.warn20Played) {
-                        task.warn20Played = true;
-                        playBeep(770, 0.4, 0);
-                        playBeep(770, 0.4, 0.6);
-                    }
-
-                    if (remaining === 10 && !task.warn10Played) {
-                        task.warn10Played = true;
-                        playBeep(880, 0.4, 0);
-                        playBeep(880, 0.4, 0.6);
-                        playBeep(880, 0.4, 1.2);
-                    }
-
-                    if (!task.timeUpShown && task.secondsSpent >= task.estimatedTime * 60) {
-                        task.timeUpShown = true;
-                        playBeep(1000, 1.5, 0);
-                        renderTasks();
-                    }
-                }, 1000);
-
+                startTimer(task);
                 renderTasks();
             });
 
@@ -369,6 +395,8 @@ taskForm.addEventListener("submit", function (event) {
         completed: false,
         secondsSpent: 0,
         timerId: null,
+        startedAt: null,
+        baseSeconds: 0,
         points: 0,
         remark: "",
         note: "",
@@ -389,6 +417,14 @@ taskForm.addEventListener("submit", function (event) {
 });
 
 loadData();
+
+tasks.forEach(function (task) {
+    if (task.startedAt && !task.completed) {
+        updateSeconds(task);
+        startTimer(task);
+    }
+});
+
 renderTasks();
 
 filterButtons.forEach(function (button) {
